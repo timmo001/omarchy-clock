@@ -290,15 +290,6 @@ Panel {
           // ---- Hero: today, centered. Once the view has stepped back
           //      it is also the way home — clicking the date you are
           //      looking for beats hunting for a reset button.
-          WorldClocks {
-            id: worldClocks
-            width: gridColumn.width
-            anchors.horizontalCenter: parent.horizontalCenter
-            bar: root.bar
-            foreground: root.contentForeground
-            fontFamily: root.contentFontFamily
-          }
-
           Text {
             width: gridColumn.width
             anchors.horizontalCenter: parent.horizontalCenter
@@ -308,6 +299,23 @@ Panel {
             font.family: root.contentFontFamily
             font.pixelSize: 52
             font.bold: true
+          }
+
+          WorldClocks {
+            id: worldClocks
+            width: gridColumn.width
+            anchors.horizontalCenter: parent.horizontalCenter
+            bar: root.bar
+            foreground: root.contentForeground
+            fontFamily: root.contentFontFamily
+          }
+
+          Rectangle {
+            width: gridColumn.width
+            height: Style.spacing.hairline
+            anchors.horizontalCenter: parent.horizontalCenter
+            color: root.contentForeground
+            opacity: 0.12
           }
 
           Item {
