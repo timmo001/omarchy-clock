@@ -235,6 +235,11 @@ Panel {
     }
   }
 
+  SystemClock {
+    id: secondClock
+    precision: SystemClock.Seconds
+  }
+
   KeyboardPanel {
     id: panel
     anchorItem: root.anchorItem
@@ -292,6 +297,17 @@ Panel {
             bar: root.bar
             foreground: root.contentForeground
             fontFamily: root.contentFontFamily
+          }
+
+          Text {
+            width: gridColumn.width
+            anchors.horizontalCenter: parent.horizontalCenter
+            horizontalAlignment: Text.AlignHCenter
+            text: Qt.formatTime(secondClock.date, "HH:mm:ss")
+            color: root.contentForeground
+            font.family: root.contentFontFamily
+            font.pixelSize: 52
+            font.bold: true
           }
 
           Item {

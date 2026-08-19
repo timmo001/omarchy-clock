@@ -5,6 +5,7 @@ clock while keeping the familiar bar and popup behaviour.
 
 The popup includes:
 
+- A full local-time readout with seconds
 - A six-week calendar with ISO week numbers and locale-aware week starts
 - Year progress and an optional life-progress reminder
 - Pacific, Mountain, Central, Eastern, and local world clocks
