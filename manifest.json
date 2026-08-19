@@ -1,10 +1,11 @@
 {
   "schemaVersion": 1,
   "id": "timmo.clock",
-  "name": "My Clock",
+  "name": "Clock",
   "version": "1.1.0",
-  "author": "Omarchy",
-  "description": "Date/time label with calendar and world-clock popup",
+  "author": "Aidan Timson",
+  "license": "MIT",
+  "description": "A compact clock with a calendar, year progress, and adjustable world clocks.",
   "kinds": [
     "bar-widget"
   ],
@@ -12,10 +13,63 @@
     "barWidget": "BarWidget.qml"
   },
   "barWidget": {
-    "displayName": "My Clock",
-    "description": "Date/time label with calendar and world clocks",
+    "displayName": "Clock",
+    "description": "A compact clock with a calendar, year progress, and adjustable world clocks.",
     "category": "Time",
-    "allowMultiple": false
+    "aliases": [
+      "calendar",
+      "date",
+      "time",
+      "world clock"
+    ],
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "format": "dddd HH:mm",
+      "verticalFormat": "HH\n—\nmm",
+      "birthYear": 0,
+      "lifeExpectancy": 90
+    },
+    "schema": [
+      {
+        "key": "format",
+        "type": "string",
+        "label": "Bar format",
+        "defaultValue": "dddd HH:mm",
+        "description": "Qt date format for a horizontal bar. 'ww' is replaced with the ISO week number."
+      },
+      {
+        "key": "verticalFormat",
+        "type": "string",
+        "label": "Vertical bar format",
+        "defaultValue": "HH\n—\nmm",
+        "description": "Qt date format for a vertical bar. Newlines stack the label."
+      },
+      {
+        "key": "weekStartDay",
+        "type": "enum",
+        "label": "Week starts on",
+        "options": [
+          "sunday",
+          "monday"
+        ],
+        "description": "Leave unset to follow the system locale. Clicking the calendar's W heading also toggles it."
+      },
+      {
+        "key": "birthYear",
+        "type": "number",
+        "label": "Birth year",
+        "defaultValue": 0,
+        "description": "Set a birth year to show life progress below year progress. 0 hides it."
+      },
+      {
+        "key": "lifeExpectancy",
+        "type": "number",
+        "label": "Life expectancy",
+        "defaultValue": 90,
+        "description": "Years used for life progress when a birth year is set."
+      }
+    ]
   },
   "omarchy": {
     "clonedFrom": "omarchy.clock"
