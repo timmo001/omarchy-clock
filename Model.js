@@ -209,7 +209,7 @@ function stepMonth(year, month, delta) {
   return { year: target.getFullYear(), month: target.getMonth() }
 }
 
-if (globalThis.module) {
+if (typeof module !== "undefined") {
   module.exports = {
     dateKey: dateKey,
     keyForDate: keyForDate,
