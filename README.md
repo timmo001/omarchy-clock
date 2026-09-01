@@ -9,7 +9,7 @@ The popup includes:
 - A six-week calendar with ISO week numbers and locale-aware week starts
 - Year progress and an optional life-progress reminder
 - Pacific, Mountain, Central, Eastern, and local world clocks
-- A `-24` to `+24` hour slider for comparing times
+- A `-24` to `+24` hour slider for comparing times, with a clickable offset label that switches between hour and minute increments
 
 Left-click the clock to open the popup. Middle-click opens Omarchy's timezone
 picker. The popup can also be toggled through the `timmo.clock` shell target.

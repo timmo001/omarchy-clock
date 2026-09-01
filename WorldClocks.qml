@@ -10,7 +10,8 @@ Column {
   required property color foreground
   required property string fontFamily
 
-  property int hourOffset: 0
+  property int minuteOffset: 0
+  property bool minuteMode: false
   property double requestedEpoch: 0
   property double runningEpoch: 0
   property var clockRows: [
@@ -24,13 +25,15 @@ Column {
   spacing: Style.space(10)
 
   function offsetLabel(value) {
-    var hours = Math.round(value)
-    if (hours === 0) return "NOW"
-    return (hours > 0 ? "+" : "") + hours + (Math.abs(hours) === 1 ? " HOUR" : " HOURS")
+    var offset = Math.round(value)
+    if (offset === 0) return "NOW"
+    if (minuteMode)
+      return (offset > 0 ? "+" : "") + offset + (Math.abs(offset) === 1 ? " MINUTE" : " MINUTES")
+    return (offset > 0 ? "+" : "") + offset + (Math.abs(offset) === 1 ? " HOUR" : " HOURS")
   }
 
   function reset() {
-    hourOffset = 0
+    minuteOffset = 0
   }
 
   function resetToNow() {
@@ -39,7 +42,7 @@ Column {
   }
 
   function refresh(now) {
-    requestedEpoch = Math.floor(now.getTime() / 1000) + hourOffset * 3600
+    requestedEpoch = Math.floor(now.getTime() / 1000) + minuteOffset * 60
     if (!timeProcess.running) runRequestedEpoch()
   }
 
@@ -146,7 +149,7 @@ Column {
     Text {
       width: Style.space(72)
       anchors.verticalCenter: parent.verticalCenter
-      text: "-24H"
+      text: root.minuteMode ? "-1440M" : "-24H"
       color: Qt.darker(root.foreground, 1.5)
       font.family: root.fontFamily
       font.pixelSize: Style.font.caption
@@ -155,36 +158,57 @@ Column {
     PanelSlider {
       id: offsetSlider
 
-      width: parent.width - Style.space(184)
+      width: parent.width - Style.space(208)
       anchors.verticalCenter: parent.verticalCenter
       bar: root.bar
-      value: root.hourOffset
-      minimum: -24
-      maximum: 24
+      value: root.minuteMode ? root.minuteOffset : root.minuteOffset / 60
+      minimum: root.minuteMode ? -1440 : -24
+      maximum: root.minuteMode ? 1440 : 24
       step: 1
       integer: true
       tickCount: 49
 
       onMoved: function(value) {
-        root.hourOffset = Math.round(value)
+        root.minuteOffset = Math.round(value) * (root.minuteMode ? 1 : 60)
         root.refresh(new Date())
       }
       onReleased: function(value) {
-        root.hourOffset = Math.round(value)
+        root.minuteOffset = Math.round(value) * (root.minuteMode ? 1 : 60)
         root.refresh(new Date())
       }
       onRightClicked: root.resetToNow()
     }
 
     Text {
-      width: Style.space(88)
+      id: offsetLabel
+
+      width: Style.space(112)
       anchors.verticalCenter: parent.verticalCenter
       horizontalAlignment: Text.AlignRight
-      text: root.offsetLabel(offsetSlider.dragging ? offsetSlider.liveValue : root.hourOffset)
-      color: root.foreground
+      text: root.offsetLabel(offsetSlider.dragging
+        ? offsetSlider.liveValue
+        : (root.minuteMode ? root.minuteOffset : root.minuteOffset / 60))
+      color: offsetLabelMouse.containsMouse
+        ? Style.hoverStateColor(root.foreground, Color.accent)
+        : root.foreground
       font.family: root.fontFamily
       font.pixelSize: Style.font.caption
       font.bold: true
+
+      MouseArea {
+        id: offsetLabelMouse
+
+        anchors.fill: parent
+        hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
+        onClicked: root.minuteMode = !root.minuteMode
+      }
+
+      PanelToolTip {
+        visible: offsetLabelMouse.containsMouse
+        text: root.minuteMode ? "Use hour increments" : "Use minute increments"
+        fontFamily: root.fontFamily
+      }
     }
   }
 }
