@@ -320,68 +320,23 @@ Panel {
             opacity: 0.12
           }
 
-          Item {
+          Text {
             width: gridColumn.width
             anchors.horizontalCenter: parent.horizontalCenter
-            height: heroRow.height
-
-            Row {
-              id: heroRow
-              width: Math.min(parent.width, heroIcon.implicitWidth + spacing + Math.max(heroDay.implicitWidth, heroDate.implicitWidth))
-              anchors.horizontalCenter: parent.horizontalCenter
-              spacing: Style.space(12)
-
-              Text {
-                id: heroIcon
-                anchors.verticalCenter: parent.verticalCenter
-                text: "󰃭"
-                color: heroMouse.containsMouse
-                  ? Style.hoverStateColor(root.contentForeground, Color.accent)
-                  : root.contentForeground
-                font.family: root.contentFontFamily
-                font.pixelSize: 48
-              }
-
-              Column {
-                width: heroRow.width - heroIcon.width - heroRow.spacing
-                spacing: 0
-
-                Text {
-                  id: heroDay
-                  width: parent.width
-                  horizontalAlignment: Text.AlignHCenter
-                  text: root.today.toLocaleString(Qt.locale(), "dddd")
-                  color: heroDate.color
-                  font.family: root.contentFontFamily
-                  font.pixelSize: 32
-                  font.bold: true
-                  fontSizeMode: Text.HorizontalFit
-                  minimumPixelSize: 20
-                }
-
-                Text {
-                  id: heroDate
-                  width: parent.width
-                  horizontalAlignment: Text.AlignHCenter
-                  text: root.today.toLocaleString(Qt.locale(), "d MMMM")
-                  color: heroMouse.containsMouse
-                    ? Style.hoverStateColor(root.contentForeground, Color.accent)
-                    : root.contentForeground
-                  font.family: root.contentFontFamily
-                  font.pixelSize: 52
-                  font.bold: true
-                  fontSizeMode: Text.HorizontalFit
-                  minimumPixelSize: 20
-                }
-              }
-            }
+            horizontalAlignment: Text.AlignHCenter
+            text: root.today.toLocaleString(Qt.locale(), "dddd d MMMM")
+            color: heroMouse.containsMouse
+              ? Style.hoverStateColor(root.contentForeground, Color.accent)
+              : root.contentForeground
+            font.family: root.contentFontFamily
+            font.pixelSize: 40
+            font.bold: true
+            fontSizeMode: Text.HorizontalFit
+            minimumPixelSize: 20
 
             MouseArea {
               id: heroMouse
-              x: heroRow.x
-              y: heroRow.y
-              width: heroRow.width
-              height: heroRow.height
+              anchors.fill: parent
               enabled: !root.viewingCurrentMonth
               hoverEnabled: enabled
               cursorShape: Qt.PointingHandCursor
