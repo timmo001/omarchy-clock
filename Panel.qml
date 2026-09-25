@@ -320,6 +320,17 @@ Panel {
             opacity: 0.12
           }
 
+          Text {
+            width: gridColumn.width
+            anchors.horizontalCenter: parent.horizontalCenter
+            horizontalAlignment: Text.AlignHCenter
+            text: root.today.toLocaleString(Qt.locale(), "dddd")
+            color: root.contentForeground
+            font.family: root.contentFontFamily
+            font.pixelSize: heroDate.font.pixelSize / 2
+            font.bold: true
+          }
+
           Item {
             width: parent.width
             height: heroRow.height
