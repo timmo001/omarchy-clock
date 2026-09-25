@@ -320,52 +320,59 @@ Panel {
             opacity: 0.12
           }
 
-          Text {
+          Item {
             width: gridColumn.width
             anchors.horizontalCenter: parent.horizontalCenter
-            horizontalAlignment: Text.AlignHCenter
-            text: root.today.toLocaleString(Qt.locale(), "dddd")
-            color: root.contentForeground
-            font.family: root.contentFontFamily
-            font.pixelSize: heroDate.font.pixelSize / 2
-            font.bold: true
-          }
-
-          Item {
-            width: parent.width
             height: heroRow.height
 
             Row {
               id: heroRow
+              width: Math.min(parent.width, heroIcon.implicitWidth + spacing + Math.max(heroDay.implicitWidth, heroDate.implicitWidth))
               anchors.horizontalCenter: parent.horizontalCenter
-              spacing: Style.space(22)
+              spacing: Style.space(12)
 
               Text {
-                // Baseline-aligned, not center-aligned: "July 26" carries a
-                // descender, so centering the two boxes leaves the icon
-                // sitting visibly low against the digits.
-                anchors.baseline: heroDate.baseline
+                id: heroIcon
+                anchors.verticalCenter: parent.verticalCenter
                 text: "󰃭"
                 color: heroMouse.containsMouse
                   ? Style.hoverStateColor(root.contentForeground, Color.accent)
                   : root.contentForeground
                 font.family: root.contentFontFamily
-                // Decorative, and deliberately outside the Style.font.*
-                // scale. Sized so the glyph reads at the cap height of the
-                // date beside it rather than towering over it.
                 font.pixelSize: 48
               }
 
-              Text {
-                id: heroDate
-                anchors.verticalCenter: parent.verticalCenter
-                text: root.today.toLocaleString(Qt.locale(), "d MMMM")
-                color: heroMouse.containsMouse
-                  ? Style.hoverStateColor(root.contentForeground, Color.accent)
-                  : root.contentForeground
-                font.family: root.contentFontFamily
-                font.pixelSize: 52
-                font.bold: true
+              Column {
+                width: heroRow.width - heroIcon.width - heroRow.spacing
+                spacing: 0
+
+                Text {
+                  id: heroDay
+                  width: parent.width
+                  horizontalAlignment: Text.AlignHCenter
+                  text: root.today.toLocaleString(Qt.locale(), "dddd")
+                  color: heroDate.color
+                  font.family: root.contentFontFamily
+                  font.pixelSize: 32
+                  font.bold: true
+                  fontSizeMode: Text.HorizontalFit
+                  minimumPixelSize: 20
+                }
+
+                Text {
+                  id: heroDate
+                  width: parent.width
+                  horizontalAlignment: Text.AlignHCenter
+                  text: root.today.toLocaleString(Qt.locale(), "d MMMM")
+                  color: heroMouse.containsMouse
+                    ? Style.hoverStateColor(root.contentForeground, Color.accent)
+                    : root.contentForeground
+                  font.family: root.contentFontFamily
+                  font.pixelSize: 52
+                  font.bold: true
+                  fontSizeMode: Text.HorizontalFit
+                  minimumPixelSize: 20
+                }
               }
             }
 
