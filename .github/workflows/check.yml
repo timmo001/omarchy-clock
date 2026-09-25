@@ -25,4 +25,4 @@ jobs:
       - name: Lint QML
         run: |
           export PATH="/usr/lib/qt6/bin:$PATH"
-          qmllint -I /usr/lib/qt6/qml --import disable --unqualified disable BarWidget.qml Panel.qml WorldClocks.qml
+          qmllint -I /usr/lib/qt6/qml --import disable --unqualified disable BarWidget.qml Panel.qml PanelFlickable.qml WorldClocks.qml

@@ -272,7 +272,7 @@ Panel {
         else if (t === "w" || t === "W") root.toggleWeekStart()
       }
 
-      Flickable {
+      PanelFlickable {
         id: calendarScroll
         anchors.fill: parent
         contentWidth: calendarColumn.width
