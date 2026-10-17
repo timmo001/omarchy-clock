@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell.Io
 import qs.Commons
+import qs.Commons as Commons
 import qs.Ui
 
 Column {
@@ -189,7 +190,7 @@ Column {
         ? offsetSlider.liveValue
         : (root.minuteMode ? root.minuteOffset : root.minuteOffset / 60))
       color: offsetLabelMouse.containsMouse
-        ? Style.hoverStateColor(root.foreground, Color.accent)
+        ? Style.hoverStateColor(root.foreground, Commons.Color.accent)
         : root.foreground
       font.family: root.fontFamily
       font.pixelSize: Style.font.caption
