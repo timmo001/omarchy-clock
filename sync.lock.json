@@ -1,0 +1,9 @@
+{
+  "copies": {
+    "PanelFlickable.qml": {
+      "item": "panel-flickable",
+      "sha": "27599413a0cbda0676bb86c793adf965288c3ff7",
+      "hash": "d72e22efd34a83b78b316def462786f405b4f278c16a67e708ce23e81b95a844"
+    }
+  }
+}
