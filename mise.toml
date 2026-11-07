@@ -5,4 +5,4 @@ depends = ["validate", "lint"]
 run = "omarchy plugin validate ."
 
 [tasks.lint]
-run = "qmllint -I /usr/lib/qt6/qml BarWidget.qml Panel.qml PanelFlickable.qml WorldClocks.qml"
+run = "/usr/lib/qt6/bin/qmllint -I /usr/lib/qt6/qml --import disable --unqualified disable BarWidget.qml Panel.qml PanelFlickable.qml WorldClocks.qml"
