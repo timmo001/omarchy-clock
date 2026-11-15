@@ -39,13 +39,13 @@ replaces the built-in clock and disabling it restores the original.
 
 ## Settings
 
-| Setting | Default | Description |
-| --- | --- | --- |
-| Bar format | `dddd HH:mm` | Qt date format for a horizontal bar. `ww` inserts the ISO week number. |
-| Vertical bar format | `HH\n—\nmm` | Qt date format for a vertical bar. Newlines stack the label. |
-| Week starts on | System locale | Sunday or Monday. The calendar's `W` heading also toggles it. |
-| Birth year | `0` | Shows life progress when set. `0` hides it. |
-| Life expectancy | `90` | Years used for the optional life-progress bar. |
+| Setting             | Default       | Description                                                            |
+| ------------------- | ------------- | ---------------------------------------------------------------------- |
+| Bar format          | `dddd HH:mm`  | Qt date format for a horizontal bar. `ww` inserts the ISO week number. |
+| Vertical bar format | `HH\n—\nmm`   | Qt date format for a vertical bar. Newlines stack the label.           |
+| Week starts on      | System locale | Sunday or Monday. The calendar's `W` heading also toggles it.          |
+| Birth year          | `0`           | Shows life progress when set. `0` hides it.                            |
+| Life expectancy     | `90`          | Years used for the optional life-progress bar.                         |
 
 The calendar writes week-start and life-progress changes back to the same
 plugin settings.

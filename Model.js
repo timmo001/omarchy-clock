@@ -32,10 +32,11 @@ function keyForDate(date) {
 
 function coerceWeekStart(value) {
   if (value === undefined || value === null) return null
-  if (Number.isFinite(value))
-    return isFinite(value) ? ((Math.round(value) % 7) + 7) % 7 : null
+  if (Number.isFinite(value)) return isFinite(value) ? ((Math.round(value) % 7) + 7) % 7 : null
 
-  var text = String(value).replace(/^\s+|\s+$/g, "").toLowerCase()
+  var text = String(value)
+    .replace(/^\s+|\s+$/g, "")
+    .toLowerCase()
   if (text === "") return null
 
   for (var i = 0; i < WEEKDAY_NAMES.length; i++)

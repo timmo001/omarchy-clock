@@ -6,9 +6,7 @@
   "author": "Aidan Timson",
   "license": "MIT",
   "description": "A compact clock with a calendar, year progress, and adjustable world clocks.",
-  "kinds": [
-    "bar-widget"
-  ],
+  "kinds": ["bar-widget"],
   "entryPoints": {
     "barWidget": "BarWidget.qml"
   },
@@ -16,12 +14,7 @@
     "displayName": "Clock",
     "description": "A compact clock with a calendar, year progress, and adjustable world clocks.",
     "category": "Time",
-    "aliases": [
-      "calendar",
-      "date",
-      "time",
-      "world clock"
-    ],
+    "aliases": ["calendar", "date", "time", "world clock"],
     "allowMultiple": false,
     "defaultSection": "right",
     "defaults": {
@@ -49,10 +42,7 @@
         "key": "weekStartDay",
         "type": "enum",
         "label": "Week starts on",
-        "options": [
-          "sunday",
-          "monday"
-        ],
+        "options": ["sunday", "monday"],
         "description": "Leave unset to follow the system locale. Clicking the calendar's W heading also toggles it."
       },
       {
