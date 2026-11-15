@@ -1,0 +1,6 @@
+AGENTS.md
+.agents/skills/
+.mise/
+mise.lock
+skills-lock.json
+sync.lock.json
