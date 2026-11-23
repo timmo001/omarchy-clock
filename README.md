@@ -1,7 +1,8 @@
 # Clock for Omarchy
 
 A compact clock and calendar for the Omarchy shell. It replaces the built-in
-clock while keeping the familiar bar and popup behaviour.
+clock while keeping the familiar bar and popup behaviour. It started as a
+customised version of Omarchy's built-in clock.
 
 The popup includes:
 
@@ -63,8 +64,3 @@ omarchy plugin remove timmo.clock
 ```bash
 mise run check
 ```
-
-## Licence
-
-MIT. This plugin started as a customised version of Omarchy's built-in clock;
-the original Omarchy copyright and licence are retained in `LICENSE`.
